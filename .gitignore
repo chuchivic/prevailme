@@ -1,3 +1,7 @@
 #Config file
 config.js
 lib/team.js
+
+
+#modules
+node_modules
