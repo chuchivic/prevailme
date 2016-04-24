@@ -2,7 +2,7 @@
 
 ### A Slack bot to store links
 
-Prevailme stores the links(with tags) you want into Firebase
+Prevailme stores the links(with tags) you want into Firebase using BotKit [BotKit.js](https://github.com/howdyai/botkit)
 
 #### Why?
 

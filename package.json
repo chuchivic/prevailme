@@ -1,0 +1,24 @@
+{
+  "name": "prevailme",
+  "version": "0.0.1",
+  "description": "prevailme slack bot",
+  "main": "bot.js",
+  "scripts": {
+    "start": "node bot.js"
+  },
+  "engines": {
+    "node": "5.8.0"
+  },
+  "author": "Jesús Suárez (@chuchivic)",
+  "license": "MIT",
+  "dependencies": {
+    "slackbots": "^0.5.1"
+  },
+  "devDependencies": {},
+  "keywords": [
+    "slack",
+    "bot",
+    "persist",
+    "links"
+  ]
+}
