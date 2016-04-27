@@ -1,7 +1,7 @@
 exports.dictionary = {
 
    hello: {
-     es: ['Hola'],
+     es: ['Hola','buenas'],
      en: ['Hi','Hello']
    },
    help: {
@@ -9,12 +9,12 @@ exports.dictionary = {
      en: ['help']
    },
    yes: {
-     es: ['si'],
-     en: ['yes']
+     es: ['si','sip','claro'],
+     en: ['yes''yep','yeah']
    },
    no: {
-     es: ['no'],
-     en: ['no']
+     es: ['no','nein','nop'],
+     en: ['no','nop','nein']
    }
 
 }
