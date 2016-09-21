@@ -2,11 +2,13 @@
 var Botkit = require('Botkit');
 var config = require('./config.js');
 var _ = require('underscore');
+var firebaseref = require('firebase');
 
+firebaseref.initializeApp(config.firebase_config);
 
-var Firebase = require("firebase");
-var myFirebaseRef = new Firebase(config.firebase_url);
-var firebaseStorage = require('botkit-storage-firebase')({firebase_uri: config.firebase_url});
+var firebase = firebaseref.database();
+//var myFirebaseRef = new Firebase(config.firebase_url);
+var firebaseStorage = require('botkit-storage-firebase')({firebase_uri: config.firebase_config.databaseURL});
 
 var talk = require('./dictionary/talk.js');
 var hear = require('./dictionary/hear.js');
@@ -18,8 +20,10 @@ var lan = config.lan;
 
 var controller = Botkit.slackbot({
     debug: true, //Be sure of this, it's very verbose
-    storage: firebaseStorage
+    storage: firebaseStorage,
+    interactive_replies: true
 });
+
 
 var bot = controller.spawn({
     token: config.slack_token
@@ -28,6 +32,7 @@ var bot = controller.spawn({
 users.updateList(bot, controller);
 help.hearHelp(bot, controller);
 links.hearLink(bot, controller);
+links.hearRecover(bot, controller);
 
 controller.on('user_channel_join',function(bot,message) {
 

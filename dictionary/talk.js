@@ -13,6 +13,14 @@ exports.dictionary = {
      es: ' qué tal andas, ¿currando mucho?',
      en: ' how it\'s going, lot of work?'
    },
+   first_conv_ans1 : {
+     es: 'Eso es que te estás ganando el pan, ¡bien hecho!',
+     en: 'That\'s good, you\'re earning your bread'
+   },
+   first_conv_ans2 : {
+     es: 'Pues algo deberías hacer al respecto, gandul',
+     en: 'You should do something to solve it'
+   },
    answer_help : {
      es: 'Cuando pongas algún enlace estaré al tanto para ver si lo quieres guardar así que tu ponte a currar y si ves algún recurso interesante ya te preguntaré si quieres guardarlo',
      en: 'When you have some link I will be privy to see if you want to save so go back to work and if you see any interesting resource I\'ll ask you if you want to save it'

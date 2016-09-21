@@ -1,20 +1,20 @@
 exports.dictionary = {
 
    hello: {
-     es: ['Hola','buenas'],
-     en: ['Hi','Hello']
+     es: 'Hola',
+     en: 'Hi'
    },
    help: {
-     es: ['ayuda'],
-     en: ['help']
+     es: 'ayuda',
+     en: 'help'
    },
    yes: {
-     es: ['si','sip','claro'],
-     en: ['yes''yep','yeah']
+     es: 'si',
+     en: 'yes'
    },
    no: {
-     es: ['no','nein','nop'],
-     en: ['no','nop','nein']
+     es: 'no',
+     en: 'no'
    }
 
 }
