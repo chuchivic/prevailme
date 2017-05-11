@@ -1,6 +1,6 @@
 var assert = require('assert');
 var expect = require("chai").expect;
-
+var utils = require('util');
 var FirebaseServer = require('firebase-server');
 
 var firebase = require('firebase');
@@ -22,56 +22,140 @@ var firebaseref = require('firebase');
 var myFirebaseRef = firebaseref.database();
 
 function storeSomeData(){
-  var tags = JSON.parse('{"uno":true,"dos":true}');
-  var link = myFirebaseRef.ref('links').push({
+
+  var tagsRef = myFirebaseRef.ref('tags').push({
+    tag:"buscador"
+  });
+  var tagId = tagsRef.getKey();
+
+  tagsRef = myFirebaseRef.ref('tags').push({
+        tag:"web"
+      });
+  var tagId2 = tagsRef.getKey();
+
+
+  var tags = JSON.parse('{"' + tagId + '":true,"' + tagId2 + '":true}');
+  var linkData = {
         user: {
           id: "sdcsdc",
           name: "jesus"
 
         },
-        url: "url",
+        url: "https://www.google.com",
         tags,
         date: new Date().toISOString()
-      });
+      };
+  var linkKey = myFirebaseRef.ref('links').push().getKey();
+console.log(utils.inspect(linkKey,false,null));
 
-      tags = JSON.parse('{"dos":true,"tres":true}');
-      link = myFirebaseRef.ref('links').push({
-            user: {
-              id: "csdcsdc",
-              name: "Mariano"
+var links = JSON.parse('{"' + linkKey + '":true}');
+  var updates = {};
+  updates['/links/' + linkKey] = linkData;
+  updates['/tags/' + tagId] = {links,
+        tag:"buscador",
+      };
+  updates['/tags/' + tagId2] = {links,
+            tag:"web",
+          };
 
-            },
-            url: "url2",
-            tags,
-            date: new Date().toISOString()
-          });
+  myFirebaseRef.ref().update(updates);
 
 
 }
 
+function storeSomeData2(){
+
+  var tagsRef = myFirebaseRef.ref('tags').push({
+    tag:"buscador"
+  });
+  var tagId = tagsRef.getKey();
+
+  tagsRef = myFirebaseRef.ref('tags').push({
+        tag:"cacahuete"
+      });
+  var tagId2 = tagsRef.getKey();
+
+
+  var tags = JSON.parse('{"' + tagId + '":true,"' + tagId2 + '":true}');
+  var linkData = {
+        user: {
+          id: "sdcsdc",
+          name: "jesus"
+
+        },
+        url: "http://www.yahoo.com",
+        tags,
+        date: new Date().toISOString()
+      };
+  var linkKey = myFirebaseRef.ref('links').push().getKey();
+
+console.log(utils.inspect(linkKey,false,null));
+
+var links = JSON.parse('{"' + linkKey + '":true}');
+  var updates = {};
+  updates['/links/' + linkKey] = linkData;
+  updates['/tags/' + tagId] = {links,
+        tag:"buscador",
+      };
+  updates['/tags/' + tagId2] = {links,
+            tag:"cacahuete",
+          };
+
+  myFirebaseRef.ref().update(updates);
+
+
+}
 
 storeSomeData();
+storeSomeData2();
 
 
 describe('Firebase recover urls from tag', function() {
-  var tagAsked = "uno";
+  var tagAsked = "buscador";
+  var firebaseRefLinks = myFirebaseRef.ref('links');
+  var firebaseRefTags = myFirebaseRef.ref('tags');
+  var values;
+  var value = 0;
 
-    it('shoud return only one link, the corresponding with the tag', function() {
 
+
+    it('should return two links',function(done){
       function callback(result){
-        console.log(result.val());
-        //console.log(result.val().url == "url");
-        expect(result.val().url).to.equal("url");
+          function callback2(result2){
+            console.log("CACA");
+            value++;
+            console.log(result2.val().url);
 
+            assert(values == value);
+            done();
+
+
+          }
+          var json = result.val();
+          console.log(json);
+          var keys = Object.keys(json);
+          console.log(keys);
+          values = keys.length;
+          for(var i = 0; i < keys.length; i++) {
+            console.log('/links/' + String(Object.keys(json[keys[i]].links)[0]));
+            firebaseRefLinks
+            .child(String(Object.keys(json[keys[i]].links)[0]))
+            .once('value')
+            .then(callback2,function(link){
+              callback2(link);
+            });
+
+
+          }
 
       }
-      myFirebaseRef.ref('links').orderByChild('tags').equalTo('true',tagAsked).once('value').then(callback,function(link){
-        //expect(link.val().tags).to.equal(tagAsked);
-        console.log("devolviendo un dato:");
-        console.log(link.val());
-        callback(link);
+      firebaseRefTags.orderByChild('tag').equalTo(tagAsked).once('value').then(callback,function(tag){
+        firebaseRefLinks.child(tag.child("links")).once('value').then(callback,function(link){
+          //console.log(link.val());
+          callback(link);
+        });
       });
-
     });
+
 
 });
