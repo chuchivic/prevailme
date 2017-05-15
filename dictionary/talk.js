@@ -44,8 +44,14 @@ exports.dictionary = {
    ask_save_url : {
      es: '¿Quieres que guarde el enlace?',
      en: 'Do you want to save the url?'
+   },
+   ask_for_tags : {
+     es: 'Parece que quieres recuperar un enlace, dime un tag y te diré los enlaces correspondientes',
+     en: 'Looks like you want to recover some links, write down a tag and I\'ll tell you the links'
+   },
+   link_found : {
+     es: 'He encontrado los siguientes enlaces: ',
+     en: 'I\'ve found following links: '
    }
-
-
 
 }

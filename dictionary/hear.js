@@ -15,6 +15,10 @@ exports.dictionary = {
    no: {
      es: 'no',
      en: 'no'
+   },
+   recover : {
+     es: 'recuperar',
+     en: 'recover'
    }
 
 }

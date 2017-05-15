@@ -1,5 +1,21 @@
 # Prevailme
 
+##Update 15-may-2017
+
+#### Recovering links
+
+Now implements links recover talking to the bot.
+You only have to tell 'recover' mentioning the bot, he asks for a tag and recover all the links with that tag.
+
+
+<img src="https://github.com/chuchivic/prevailme/blob/master/recover.png" alt="Prevailme example"/>
+
+
+##### Improvements
+- Can use one or more tags for recovery
+- Connect to wit.ai for some natural languaje.
+
+
 ### A Slack bot to store links
 
 Prevailme stores the links(with tags) you want into Firebase using BotKit [BotKit.js](https://github.com/howdyai/botkit)
@@ -14,6 +30,7 @@ So why not store the interesting ones?
 When you have the bot in the room, he it's going to listen when you paste a link, and ask you if you want to store the data, here is a simple conversation:
 
 <img src="https://github.com/chuchivic/prevailme/blob/master/example.png" alt="Prevailme example"/>
+
 
 In my case I gave the personality and photography of Eugenio, a spanish comedian.
 

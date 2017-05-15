@@ -1,5 +1,5 @@
 'use strict';
-var Botkit = require('Botkit');
+var Botkit = require('botkit');
 var config = require('./config.js');
 var _ = require('underscore');
 var firebaseref = require('firebase');
@@ -7,7 +7,6 @@ var firebaseref = require('firebase');
 firebaseref.initializeApp(config.firebase_config);
 
 var firebase = firebaseref.database();
-//var myFirebaseRef = new Firebase(config.firebase_url);
 var firebaseStorage = require('botkit-storage-firebase')({firebase_uri: config.firebase_config.databaseURL});
 
 var talk = require('./dictionary/talk.js');

@@ -5,3 +5,7 @@ lib/team.js
 
 #modules
 node_modules
+
+#IDEs
+.vscode
+.idea
