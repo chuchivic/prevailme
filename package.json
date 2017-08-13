@@ -1,0 +1,32 @@
+{
+  "name": "prevailme",
+  "version": "0.0.1",
+  "description": "prevailme slack bot",
+  "main": "bot.js",
+  "scripts": {
+    "start": "nodejs bot.js",
+    "test": "./node_modules/.bin/mocha --reporter spec"
+  },
+  "engines": {
+    "node": "5.8.0"
+  },
+  "author": "Jesús Suárez (@chuchivic)",
+  "license": "MIT",
+  "dependencies": {
+    "botkit": "^0.2.2",
+    "botkit-storage-firebase": "^1.0.0",
+    "chai": "^3.5.0",
+    "firebase": "^3.2.0",
+    "slackbots": "^0.5.1"
+  },
+  "devDependencies": {
+    "firebase-server": "^0.7.0",
+    "mocha": "^3.0.2"
+  },
+  "keywords": [
+    "slack",
+    "bot",
+    "persist",
+    "links"
+  ]
+}
